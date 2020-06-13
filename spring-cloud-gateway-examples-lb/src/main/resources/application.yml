@@ -1,0 +1,32 @@
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: spring-cloud-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          #enable auto routes from http://yourhost/ServiceId/subpath to http://ServiceIdBackendServerIp:port/subpath
+          #if enabled = false, auto routes disabled, explicit lb://serviceId routes also effective
+          enabled: true
+          #no need to use upper case serviceId to request backend service
+          lower-case-service-id: true
+logging:
+  level:
+    root: INFO
+#    org.springframework.cloud.gateway: DEBUG
+#    org.springframework.http.server.reactive: DEBUG
+#    org.springframework.web.reactive: DEBUG
+#    reactor.ipc.netty: DEBUG
+#    reactor.netty: DEBUG
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
